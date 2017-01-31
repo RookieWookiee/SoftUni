@@ -40,7 +40,7 @@ public class _12_LegendaryFarming {
 					switch(name) {
 						case "motes": legendary = "Dragonwrath"; break;
 						case "fragments": legendary = "Valanyr"; break;
-						case "shards": legendary = "Shadormourne"; break;
+						case "shards": legendary = "Shadowmourne"; break;
 					}
 					keyItems.put(name, keyItems.get(name)-250);
 					break;
