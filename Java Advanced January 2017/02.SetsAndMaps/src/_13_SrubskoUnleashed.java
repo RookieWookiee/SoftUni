@@ -51,8 +51,14 @@ public class _13_SrubskoUnleashed {
 	private static boolean isInputValid(String[] input) {
 		if(input.length < MIN_FIELDS) return false;
 		if(input.length > MAX_FIELDS) return false;
-		if(!String.join(DELIM, input).contains(VENUE_DELIM)) return false;
 		
-		return true;
+		try{
+			Integer.parseInt(input[input.length-1]);
+			Integer.parseInt(input[input.length-2]);
+		} catch(NumberFormatException e) {
+			return false;
+		}
+		
+		return String.join(DELIM, input).contains(VENUE_DELIM);
 	}
 }
