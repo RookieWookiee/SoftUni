@@ -19,12 +19,13 @@ public class _14_DragonArmy {
 			if(!dragons.containsKey(input[0]))
 				dragons.put(input[0], new TreeSet());
 			Dragon d = new Dragon(input);
-			if(!dragons.get(input[0]).contains(d))
+			if(!dragons.get(input[0]).contains(d)) {
 				dragons.get(input[0]).add(new Dragon(input));
-			else {
+			} else {
 				dragons.get(input[0]).remove(d);
 				dragons.get(input[0]).add(d);
 			}
+			
 		}
 		
 		dragons.entrySet().forEach(x -> {
@@ -35,19 +36,17 @@ public class _14_DragonArmy {
 	}
 	
 	public static String avgStats(TreeSet<Dragon> dragons) {
-		double count = dragons.size();
-		int dmg = 0,
-			hp = 0,
-			armor = 0;
-		for(Dragon d: dragons) {
-			dmg += d.getDmg();
-			hp += d.getHp();
-			armor += d.getArmor();
-		}
+		double dmg = dragons.stream().mapToDouble(Dragon::getDmg)
+			.average()
+			.getAsDouble();
+		double hp = dragons.stream().mapToDouble(Dragon::getHp)
+			.average()
+			.getAsDouble();
+		double armor = dragons.stream().mapToDouble(Dragon::getArmor)
+			.average()
+			.getAsDouble();
 		
-		return String.format("%.2f/%.2f/%.2f", dmg/count,
-			hp/count,
-			armor/count);
+		return String.format("%.2f/%.2f/%.2f", dmg, hp, armor);
 	}
 	
 	public class Dragon implements Comparable<Dragon>{
@@ -71,7 +70,6 @@ public class _14_DragonArmy {
 		public int getDmg() { return this.damage; }
 		public int getHp() { return this.hp; }
 		public int getArmor() { return this.armor; }
-		public String getName() { return this.name; }
 		
 		private Dragon(String[] args) {
 			this(args[1]);
