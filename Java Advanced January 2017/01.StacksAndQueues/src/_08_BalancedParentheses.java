@@ -1,12 +1,12 @@
 
 import java.util.ArrayDeque;
 import java.util.Scanner;
-import java.util.Stack; //{[()]}
 
 public class _08_BalancedParentheses {
     public static void main(String[] args) {
+		
         Scanner in = new Scanner(System.in);
-        ArrayDeque<Character> deck = new ArrayDeque();
+        ArrayDeque<Character> deck = new ArrayDeque(); //Could've used a Stack
         char[] arr = in.nextLine().toCharArray();
         
         for(int i = 0; i < arr.length; ++i) {
