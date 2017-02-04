@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.ArrayDeque;
 
 //This could be a lot cleaner overall. See comments below. I'm feeling lazy atm.
-
+//
 public class _07_TruckTour {
 	public static void main(String[] args) {
 		
@@ -19,8 +19,9 @@ public class _07_TruckTour {
 				Integer.parseInt(tokens[1])});
 		}
 		
-		//Ugly: will look cleaner with while loops and declaration inside
-		int[] startStation; //Ugly
+		//Ugly: will look cleaner with while loops and declaration inside. 
+		//Unnecessary polution of the namespace
+		int[] startStation;
 		int[] currStation;
 		int index = 0;
 		
