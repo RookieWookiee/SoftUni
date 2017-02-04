@@ -3,7 +3,7 @@ import java.util.ArrayDeque;
 import java.util.Scanner;
 import java.util.Stack; //{[()]}
 
-public class _07_BalancedParentheses {
+public class _08_BalancedParentheses {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         ArrayDeque<Character> deck = new ArrayDeque();
