@@ -1,43 +1,47 @@
 
-import java.util.*;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class _11_SimpleTextEditor {
 
 	public static void main(String[] args) {
+		
 		Scanner sc = new Scanner(System.in);
-		int n = Integer.parseInt(sc.nextLine());
-		StringBuilder bld = new StringBuilder("");
+		StringBuilder bld = new StringBuilder(); 
 		Stack<String> history = new Stack();
-		String[] input = null;
-		Boolean inputSwitch = false;
+		String[] tokens = null;
+		Boolean undoSwitch = false;
+		
+		int n = Integer.parseInt(sc.nextLine());
 
 		for (int i = 0; i < n; ++i) {
-			if (!inputSwitch) {
-				input = sc.nextLine().split(" ");
+			if (!undoSwitch) {
+				tokens = sc.nextLine().split(" ");
 			}
-			switch (input[0]) {
-				case "1":
-					bld.append(input[1]);
-					if (!inputSwitch) {
-						history.push("2 " + input[1].length());
+			switch (tokens[0]) {
+				case "1": //append some String to the end
+					bld.append(tokens[1]);
+					//If undo was invoked don't add the opposite of the command to the history
+					if (!undoSwitch) { 
+						history.push("2 " + tokens[1].length());
 					}
-					inputSwitch = false;
+					undoSwitch = false;
 					break;
-				case "2":
-					int num = Integer.parseInt(input[1]);
+				case "2": //Erase 'num' count of elements from the end
+					int num = Integer.parseInt(tokens[1]);
 					int len = bld.length();
-					if (!inputSwitch) {
+					if (!undoSwitch) {
 						history.add("1 " + bld.substring(len - num, len));
 					}
-					inputSwitch = false;
+					undoSwitch = false;
 					bld.delete(len - num, len);
 					break;
-				case "3":
-					System.out.println(bld.charAt(Integer.parseInt(input[1]) - 1));
+				case "3": // Contains 
+					System.out.println(bld.charAt(Integer.parseInt(tokens[1]) - 1));
 					break;
-				case "4":
-					inputSwitch = true;
-					input = history.pop().split(" ");
+				case "4": //Undo;
+					undoSwitch = true;
+					tokens = history.pop().split(" ");
 					++n;
 					break;
 			}
