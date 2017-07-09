@@ -6,7 +6,7 @@ namespace Sorting
 	{
 		private static T[] aux;
 
-		public static void Sort(T[] arr)
+        public static void Sort(T[] arr)
 		{
 			aux = new T[arr.Length];
 			Sort (arr, 0, arr.Length - 1);
