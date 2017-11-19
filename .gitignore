@@ -270,3 +270,7 @@ paket-files/
 *.sln.iml
 *.swp
 *.zip
+
+# my ignores
+[Pp]roperties/
+App.config
